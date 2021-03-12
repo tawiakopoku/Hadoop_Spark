@@ -1,0 +1,7 @@
+df = yourDF
+    .withColumn("rn", F.row_number()
+        .over(Window.partitionBy("email")
+        .orderBy(F.col("timestamp").desc())
+
+df = df.filter(F.col("rn") == 1).drop("rn")
+df.show()
